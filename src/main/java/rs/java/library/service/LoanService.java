@@ -14,23 +14,23 @@ import java.util.List;
 public class LoanService {
 
     LoanRepository loanRepository;
-    PersonRepository personRepository;
-    BookRepository bookRepository;
+    PersonService personService;
+    BookService bookService;
 
     @Autowired
     public LoanService(LoanRepository loanRepository,
-                       PersonRepository personRepository,
-                       BookRepository bookRepository) {
+                       PersonService personService,
+                       BookService bookService) {
         this.loanRepository = loanRepository;
-        this.personRepository = personRepository;
-        this.bookRepository = bookRepository;
+        this.personService = personService;
+        this.bookService = bookService;
     }
 
     public Loan addLoan(Loan loan) {
         Loan loanApi = new Loan();
         loanApi.setLoanDate(loan.getLoanDate());
-        loanApi.setPerson(personRepository.findById(loan.getPerson().getId()).get());
-        loanApi.setBook(bookRepository.findById(loan.getBook().getId()).get());
+        loanApi.setPerson(personService.getById(loan.getPerson().getId()));
+        loanApi.setBook(bookService.getById(loan.getBook().getId()));
 
         return loanRepository.save(loanApi);
     }

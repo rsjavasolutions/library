@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import rs.java.library.exception.InvalidBookIdException;
+import rs.java.library.exception.InvalidIdException;
 import rs.java.library.model.ApiError;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -21,8 +21,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
-    @ExceptionHandler(InvalidBookIdException.class)
-    public ResponseEntity<Object> handlerInvalidBookId(InvalidBookIdException ex) {
+    @ExceptionHandler(InvalidIdException.class)
+    public ResponseEntity<Object> handlerInvalidBookId(InvalidIdException ex) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
         return new ResponseEntity<>(apiError, apiError.getStatus());

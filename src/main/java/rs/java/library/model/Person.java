@@ -18,8 +18,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(Integer id, String name, String surname, Sex sex) {
-        this.id = id;
+    public Person(String name, String surname, Sex sex) {
         this.name = name;
         this.surname = surname;
         this.sex = sex;

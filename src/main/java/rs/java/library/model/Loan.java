@@ -12,10 +12,10 @@ public class Loan {
     @Column(name = "loan_id")
     private Integer id;
     private LocalDate loanDate;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id")
     private Person person;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book;
 

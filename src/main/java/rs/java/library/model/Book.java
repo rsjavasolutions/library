@@ -17,8 +17,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Integer id, String isbn, String author, String title) {
-        this.id = id;
+    public Book(String isbn, String author, String title) {
         this.isbn = isbn;
         this.author = author;
         this.title = title;

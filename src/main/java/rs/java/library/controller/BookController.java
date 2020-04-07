@@ -1,10 +1,7 @@
 package rs.java.library.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.java.library.model.Book;
 import rs.java.library.service.BookService;
 
@@ -20,8 +17,7 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public Book addBook(@PathVariable Book book){
+    public Book addBook(@RequestBody Book book){
         return bookService.addBook(book);
     }
-
 }

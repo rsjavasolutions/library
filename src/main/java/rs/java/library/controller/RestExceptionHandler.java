@@ -18,14 +18,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handlerNullPointer(NullPointerException ex) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, "INVALID COUNTRY CODE");
-        return new ResponseEntity<>(apiError, apiError.getStatus());
+        return buildResponseEntity(apiError);
     }
 
     @ExceptionHandler(InvalidIdException.class)
-    public ResponseEntity<Object> handlerInvalidBookId(InvalidIdException ex) {
+    public ResponseEntity<Object> handlerInvalidId(InvalidIdException ex) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
-        return new ResponseEntity<>(apiError, apiError.getStatus());
+        return buildResponseEntity(apiError);
     }
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {

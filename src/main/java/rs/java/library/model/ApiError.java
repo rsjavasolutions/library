@@ -17,13 +17,11 @@ public class ApiError {
     public ApiError(HttpStatus status, String message) {
         this.status = status;
         this.message = message;
-        localDateTime = getLocalDateTime();
+        this.localDateTime = getTime();
     }
 
-    private String getLocalDateTime(){
-        LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        return formatter.format(localDateTime);
+    public String getLocalDateTime() {
+        return getTime();
     }
 
     public HttpStatus getStatus() {
@@ -41,5 +39,11 @@ public class ApiError {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    private String getTime(){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return formatter.format(localDateTime);
     }
 }

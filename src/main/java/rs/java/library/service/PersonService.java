@@ -35,7 +35,9 @@ public class PersonService {
     public ResponseEntity<Person> updatePerson(Integer id, Person person){
         Optional<Person> optionalPerson = personRepository.findById(id);
         if (optionalPerson.isPresent()){
-            optionalPerson = Optional.of(person);
+            optionalPerson.get().setName(person.getName());
+            optionalPerson.get().setSex(person.getSex());
+            optionalPerson.get().setSurname(person.getSurname());
             personRepository.save(optionalPerson.get());
             return new ResponseEntity<>(HttpStatus.OK);
         }

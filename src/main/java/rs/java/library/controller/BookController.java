@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import rs.java.library.model.Book;
 import rs.java.library.service.BookService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class BookController {
@@ -20,4 +22,10 @@ public class BookController {
     public Book addBook(@RequestBody Book book){
         return bookService.addBook(book);
     }
+
+    @GetMapping("/books")
+    public List<Book> getBooks(){
+        return bookService.getAll();
+    }
+
 }

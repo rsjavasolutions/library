@@ -1,10 +1,8 @@
 package rs.java.library.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import rs.java.library.model.Person;
 import rs.java.library.service.PersonService;
 
@@ -19,8 +17,14 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping("/people")
+    @PostMapping("people")
     public Person addPerson(@RequestBody Person person){
         return personService.addPerson(person);
+    }
+
+    @PutMapping("people/{id}")
+    public ResponseEntity<Person> updatePerson(
+            @PathVariable Integer id, @RequestBody Person person){
+        return personService.updatePerson(id,person);
     }
 }

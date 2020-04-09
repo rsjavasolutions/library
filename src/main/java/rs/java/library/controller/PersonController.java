@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import rs.java.library.model.Person;
 import rs.java.library.service.PersonService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/")
 public class PersonController {
@@ -27,4 +29,10 @@ public class PersonController {
             @PathVariable Integer id, @RequestBody Person person){
         return personService.updatePerson(id,person);
     }
+
+    @GetMapping("people")
+    public List<Person> getAll(){
+        return personService.getAll();
+    }
+
 }

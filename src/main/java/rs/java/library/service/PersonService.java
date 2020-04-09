@@ -8,6 +8,7 @@ import rs.java.library.exception.InvalidIdException;
 import rs.java.library.model.Person;
 import rs.java.library.repository.PersonRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,6 +43,10 @@ public class PersonService {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    public List<Person> getAll(){
+        return personRepository.findAll();
     }
 
 }

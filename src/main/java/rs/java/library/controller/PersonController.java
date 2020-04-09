@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/")
 public class PersonController {
 
-    PersonService personService;
+    private PersonService personService;
 
     @Autowired
     public PersonController(PersonService personService) {
@@ -35,4 +35,8 @@ public class PersonController {
         return personService.getAll();
     }
 
+    @DeleteMapping("people/{id}")
+    public ResponseEntity<Person> deleteById(@PathVariable Integer id){
+        return personService.deleteById(id);
+    }
 }

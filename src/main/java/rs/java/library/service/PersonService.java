@@ -36,6 +36,7 @@ public class PersonService {
         Optional<Person> optionalPerson = personRepository.findById(id);
         if (optionalPerson.isPresent()){
             optionalPerson = Optional.of(person);
+            personRepository.save(optionalPerson.get());
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

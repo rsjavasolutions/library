@@ -25,17 +25,17 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public Person getById(Integer id){
+    public Person getById(Integer id) {
         Optional<Person> optionalPerson = personRepository.findById(id);
-        if (optionalPerson.isPresent()){
+        if (optionalPerson.isPresent()) {
             return optionalPerson.get();
         }
         throw new InvalidIdException("INVALID PERSON ID NUMBER");
     }
 
-    public ResponseEntity<Person> updatePerson(Integer id, Person person){
+    public ResponseEntity<Person> updatePerson(Integer id, Person person) {
         Optional<Person> optionalPerson = personRepository.findById(id);
-        if (optionalPerson.isPresent()){
+        if (optionalPerson.isPresent()) {
             optionalPerson.get().setName(person.getName());
             optionalPerson.get().setSex(person.getSex());
             optionalPerson.get().setSurname(person.getSurname());
@@ -45,8 +45,17 @@ public class PersonService {
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
-    public List<Person> getAll(){
+    public List<Person> getAll() {
         return personRepository.findAll();
     }
 
+    public ResponseEntity<Person> deleteById(Integer id) {
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        if (optionalPerson.isPresent()) {
+            personRepository.delete(optionalPerson.get());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
 }
+

@@ -7,7 +7,6 @@ import rs.java.library.request.BookRequest;
 import rs.java.library.response.BookResponse;
 import rs.java.library.service.BookService;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController

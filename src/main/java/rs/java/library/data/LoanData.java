@@ -3,26 +3,27 @@ package rs.java.library.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import rs.java.library.model.Book;
-import rs.java.library.model.Loan;
+import rs.java.library.model.BookEntity;
 import rs.java.library.model.Person;
 import rs.java.library.model.Sex;
+import rs.java.library.repository.BookRepository;
 import rs.java.library.service.BookService;
-import rs.java.library.service.LoanService;
 import rs.java.library.service.PersonService;
-
-import java.time.LocalDate;
 
 @Component
 public class LoanData implements CommandLineRunner {
 
     private PersonService personService;
     private BookService bookService;
+    private BookRepository bookRepository;
 
     @Autowired
-    public LoanData(PersonService personService, BookService bookService) {
+    public LoanData(PersonService personService,
+                    BookService bookService,
+                    BookRepository bookRepository) {
         this.personService = personService;
         this.bookService = bookService;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -42,18 +43,18 @@ public class LoanData implements CommandLineRunner {
         personService.addPerson(person5);
         personService.addPerson(person6);
 
-        Book book = new Book("963852741", "Best Cars", "Jeremy Clarkson");
-        Book book2 = new Book("123456789", "JW Construction", "Highest Buildings");
-        Book book3 = new Book("741852963", "Adam Mickiewicz", "Pan Tadeusz");
-        Book book4 = new Book("7539512864", "Scott Gallawy", "The four");
-        Book book5 = new Book("789987789", "Michal Makaruk", "Java first steps");
-        Book book6 = new Book("123321123", "Mario Bross", "Super Mario");
+        BookEntity bookEntity = new BookEntity("963852741", "Best Cars", "Jeremy Clarkson");
+        BookEntity bookEntity2 = new BookEntity("123456789", "JW Construction", "Highest Buildings");
+        BookEntity bookEntity3 = new BookEntity("741852963", "Adam Mickiewicz", "Pan Tadeusz");
+        BookEntity bookEntity4 = new BookEntity("7539512864", "Scott Gallawy", "The four");
+        BookEntity bookEntity5 = new BookEntity("789987789", "Michal Makaruk", "Java first steps");
+        BookEntity bookEntity6 = new BookEntity("123321123", "Mario Bross", "Super Mario");
 
-        bookService.addBook(book);
-        bookService.addBook(book2);
-        bookService.addBook(book3);
-        bookService.addBook(book4);
-        bookService.addBook(book5);
-        bookService.addBook(book6);
+        bookRepository.save(bookEntity);
+        bookRepository.save(bookEntity2);
+        bookRepository.save(bookEntity3);
+        bookRepository.save(bookEntity4);
+        bookRepository.save(bookEntity5);
+        bookRepository.save(bookEntity6);
     }
 }

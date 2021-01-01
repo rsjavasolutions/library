@@ -17,15 +17,15 @@ public class Loan {
     private Person person;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
-    private Book book;
+    private BookEntity bookEntity;
 
     public Loan() {
     }
 
-    public Loan(LocalDate loanDate, Person person, Book book) {
+    public Loan(LocalDate loanDate, Person person, BookEntity bookEntity) {
         this.loanDate = loanDate;
         this.person = person;
-        this.book = book;
+        this.bookEntity = bookEntity;
     }
 
     public Integer getId() {
@@ -52,11 +52,11 @@ public class Loan {
         this.person = person;
     }
 
-    public Book getBook() {
-        return book;
+    public BookEntity getBookEntity() {
+        return bookEntity;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookEntity(BookEntity bookEntity) {
+        this.bookEntity = bookEntity;
     }
 }

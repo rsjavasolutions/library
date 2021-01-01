@@ -3,11 +3,8 @@ package rs.java.library.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.java.library.model.Loan;
-import rs.java.library.repository.BookRepository;
 import rs.java.library.repository.LoanRepository;
-import rs.java.library.repository.PersonRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,7 +27,6 @@ public class LoanService {
         Loan loanApi = new Loan();
         loanApi.setLoanDate(loan.getLoanDate());
         loanApi.setPerson(personService.getById(loan.getPerson().getId()));
-        loanApi.setBook(bookService.getById(loan.getBook().getId()));
 
         return loanRepository.save(loanApi);
     }

@@ -1,0 +1,1 @@
+INSERT into books VALUES(1, "isbn_1", "author_1", "title_1")
